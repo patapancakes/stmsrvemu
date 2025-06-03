@@ -1,7 +1,7 @@
 from builtins import bytes, object, range
 
 __author__ = 'RenardDev//chatGPT'
-__url__ = 'https://github.com/RenardDev/CryptICE'
+__url__ = 'https://github.com/RenardDev/ICECipher'
 __version__ = '2.1'
 
 __all__ = ['IceKey']

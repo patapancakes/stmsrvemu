@@ -5,7 +5,7 @@ import sys
 from datetime import datetime
 import struct
 from tkinter import filedialog
-import PySimpleGUI as psg
+import PySimpleGUI-4-foss as psg
 import configparser
 from pathlib import Path
 from shutil import copystat
@@ -16,7 +16,7 @@ from json import dumps as jsondump
 from json import loads as jsonload
 from bisect import bisect_right
 
-from PySimpleGUI import WIN_CLOSED
+from PySimpleGUI-4-foss import WIN_CLOSED
 from pyperclip import copy as clipboardcopy
 from GenerateDB import FinalFileReaderv0, FinalFileReaderv1
 
@@ -362,7 +362,7 @@ class BlobManager(object):
             loader['-STATUS-'].update(value = 'Parsing firstblob data...')
             self.FirstBlobThread()
             loader['-PBAR-'].update(current_count = 100)
-        # PySimpleGUI layout and table
+        # PySimpleGUI-4-foss layout and table
         tbl1 = None
         layout = None
 

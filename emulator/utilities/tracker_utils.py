@@ -2,7 +2,7 @@ import traceback
 import io
 import logging
 import struct
-from CryptICE import IceKey
+from ICECipher import IceKey
 
 import globalvars
 
