@@ -104,7 +104,7 @@ def stmserver_initialization():
         threading.Thread(target = lambda:every(60, auto_swap_blob.swap_blobs)).start()
 
     # initialize logger, emulator.ini and mariadb if needed
-    if not os.path.exists(config['configsdir'] + '\\' + '.initialized'):
+    if not os.path.exists(os.path.join(config['configsdir'], '.initialized')):
         firstrun.check_initialization()
     config = read_config()
     #if config["uat"] != "1":
