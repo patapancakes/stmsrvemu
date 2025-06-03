@@ -6,7 +6,7 @@ from threading import Thread
 from time import sleep
 import time
 import zlib
-import PySimpleGUI as psg
+import PySimpleGUI-4-foss as psg
 from pathlib import Path
 from os import path
 

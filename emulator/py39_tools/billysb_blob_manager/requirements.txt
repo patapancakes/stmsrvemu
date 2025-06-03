@@ -1,2 +1,2 @@
 pyperclip
-PySimpleGUI==4.70.1
+PySimpleGUI-4-foss==4.60.4.1
