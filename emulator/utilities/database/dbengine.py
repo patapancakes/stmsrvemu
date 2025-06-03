@@ -1,11 +1,11 @@
 import os
+import platform
 import sys
 import threading
 import logging
 import subprocess
 import mariadb
 import time
-import os
 import zipfile
 import psutil
 from datetime import datetime, timedelta
@@ -138,36 +138,35 @@ class DatabaseDriver():
                     if existing_file:
                         log.debug(f"File {filename} has already been executed. Skipping.")
                         return
-                    if os.path.isfile("files/mdb/bin/mariadb.exe"):
-                        # Connect to MariaDB Platform
-                        try:
-                            conn = mariadb.connect(
-                                    user=config['database_username'],
-                                    password=config['database_password'],
-                                    host=config['database_host'],
-                                    port=int(config['database_port'])
-                            )
-                        except mariadb.Error as e:
-                            print(f"Error connecting to MariaDB Platform: {e}")
-                            return
-                        # Get Cursor
-                        cur = conn.cursor()
+                    # Connect to MariaDB Platform
+                    try:
+                        conn = mariadb.connect(
+                                user=config['database_username'],
+                                password=config['database_password'],
+                                host=config['database_host'],
+                                port=int(config['database_port'])
+                        )
+                    except mariadb.Error as e:
+                        print(f"Error connecting to MariaDB Platform: {e}")
+                        return
+                    # Get Cursor
+                    cur = conn.cursor()
 
-                        cur.execute(f"DROP DATABASE IF EXISTS {database_schema}")
-                        cur.execute(f"CREATE DATABASE IF NOT EXISTS {database_schema}")
-                        conn.close()
+                    cur.execute(f"DROP DATABASE IF EXISTS {database_schema}")
+                    cur.execute(f"CREATE DATABASE IF NOT EXISTS {database_schema}")
+                    conn.close()
 
-                        # these need to be \\, not /, else import fails
-                        import_cddb = subprocess.Popen(f"files\\mdb\\bin\\mariadb.exe -u {config['database_username']} -p{config['database_password']} -h {config['database_host']} -P {config['database_port']} --skip-ssl {database_schema} < files\\sql\\{database_schema}.sql", shell=True)
-                        import_cddb.wait()
+                    processname = "files/mdb/bin/mariadb.exe" if os.path.isfile("files/mdb/bin/mariadb.exe") and platform.system == "Windows" else "mariadb"
+                    import_cddb = subprocess.Popen(f"{os.path.normpath(processname)} -u {config['database_username']} -p{config['database_password']} -h {config['database_host']} -P {config['database_port']} --skip-ssl {database_schema} < {os.path.normpath(sql_file)}", shell=True)
+                    import_cddb.wait()
 
-                        log.debug(f"Successfully executed statement.")
+                    log.debug(f"Successfully executed statement.")
 
-                        log.info(f"Finished executing {sql_file}.")
-                        executed_file = ExecutedSQLFile(filename = filename)
-                        session.add(executed_file)
-                        session.commit()
-                        # os.remove(sql_file)
+                    log.info(f"Finished executing {sql_file}.")
+                    executed_file = ExecutedSQLFile(filename = filename)
+                    session.add(executed_file)
+                    session.commit()
+                    # os.remove(sql_file)
             else:
                 # Read the SQL file and escape problematic characters
                 with open(sql_file, 'r', encoding = 'latin-1') as file:
