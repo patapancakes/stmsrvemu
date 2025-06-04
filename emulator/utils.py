@@ -415,7 +415,7 @@ def launch_neuter_application(disable_converter):
                     neuter1 = subprocess.Popen(f"start python {globalvars.neuter_path} load app ,8", shell = True)
                 else:
                     neuter1 = subprocess.Popen(f"start {globalvars.neuter_path} load app ,8", shell = True)
-            elif globalvars.current_os == 'Linux':
+            else:
                 neuter1 = subprocess.Popen(f'python3 {globalvars.neuter_path} load app ,8 &', shell = True)
             neuter1.wait()
         else:
@@ -432,7 +432,7 @@ def launch_neuter_application_standalone():
                 neuter1 = subprocess.Popen(f"start python {globalvars.neuter_path} load app ,8", shell = True)
             else:
                 neuter1 = subprocess.Popen(f"start {globalvars.neuter_path} load app ,8", shell = True)
-        elif globalvars.current_os == 'Linux':
+        else:
             neuter1 = subprocess.Popen(f'python3 {globalvars.neuter_path} load app ,8 &', shell = True)
         neuter1.wait()
     else:
