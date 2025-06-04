@@ -156,7 +156,7 @@ class DatabaseDriver():
                     cur.execute(f"CREATE DATABASE IF NOT EXISTS {database_schema}")
                     conn.close()
 
-                    processname = "files/mdb/bin/mariadb.exe" if os.path.isfile("files/mdb/bin/mariadb.exe") and platform.system == "Windows" else "mariadb"
+                    processname = "files/mdb/bin/mariadb.exe" if os.path.isfile("files/mdb/bin/mariadb.exe") and globalvars.current_os == "Windows" else "mariadb"
                     import_cddb = subprocess.Popen(f"{os.path.normpath(processname)} -u {config['database_username']} -p{config['database_password']} -h {config['database_host']} -P {config['database_port']} --skip-ssl {database_schema} < {os.path.normpath(sql_file)}", shell=True)
                     import_cddb.wait()
 
