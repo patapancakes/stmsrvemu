@@ -183,7 +183,7 @@ def init_logger():
 
     fh = logging.handlers.RotatingFileHandler(os.path.abspath('logs/neuter_debug.log'), maxBytes = 20000000, backupCount = 10)
     fh.setLevel(logging.DEBUG)
-    fh2 = logging.handlers.RotatingFileHandler(os.path.absath('logs/neuter_info.log'), maxBytes = 20000000, backupCount = 5)
+    fh2 = logging.handlers.RotatingFileHandler(os.path.abspath('logs/neuter_info.log'), maxBytes = 20000000, backupCount = 5)
     fh2.setLevel(logging.INFO)
     er = logging.handlers.RotatingFileHandler(os.path.abspath('logs/neuter_error.log'), maxBytes = 20000000, backupCount = 2)
     er.setLevel(logging.WARNING)
