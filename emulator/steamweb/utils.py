@@ -61,9 +61,9 @@ def copy_appropriate_installer():
     config = get_config()
     web_root = config['web_root']
     installers_path = os.path.join(web_root, 'installers')
-    lan_installer_path = os.path.join(web_root, 'downloads/steaminstall_lan.exe')
-    wan_installer_path = os.path.join(web_root, 'downloads/steaminstall_wan.exe')
-    download_path = os.path.join(web_root, 'downloads')
+    lan_installer_path = os.path.join(web_root, 'download/steaminstall_lan.exe')
+    wan_installer_path = os.path.join(web_root, 'download/steaminstall_wan.exe')
+    download_path = os.path.join(web_root, 'download')
     try:
         os.makedirs(download_path)
     except OSError as e:

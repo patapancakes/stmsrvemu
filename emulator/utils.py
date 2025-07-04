@@ -463,8 +463,8 @@ def replace_installer_exes():
         # Use os.path.join and normalize all paths
         lan_installer = os.path.normpath(os.path.join(webroot_path, 'download', 'steaminstall_lan.exe'))
         wan_installer = os.path.normpath(os.path.join(webroot_path, 'download', 'steaminstall_wan.exe'))
-        lan_steamexe_path = os.path.normpath(os.path.join('client', 'lan', 'steam.exe'))
-        wan_steamexe_path = os.path.normpath(os.path.join('client', 'wan', 'steam.exe'))
+        lan_steamexe_path = os.path.normpath(os.path.join('client', 'lan', 'Steam.exe'))
+        wan_steamexe_path = os.path.normpath(os.path.join('client', 'wan', 'Steam.exe'))
         steamexe = os.path.normpath('STEAM.EXE')  # Normalizing in case the file system requires it
 
         replace_file_in_zip(lan_installer, steamexe, lan_steamexe_path)
