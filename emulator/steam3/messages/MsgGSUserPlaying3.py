@@ -32,7 +32,11 @@ class MsgGSUserPlaying3:
 
         # Assuming GameConnectToken class has a deserialize method
         game_connect_token_class = GameConnectToken()
-        self.game_connect_token = game_connect_token_class.deserialize(game_connect_token)
+
+        # HACK: the server issues tokens that are too short
+        # just lie about their contents, they're not real anyway
+        game_connect_token_class.steamGlobalId = self.steam_id
+        self.game_connect_token = game_connect_token_class #game_connect_token_class.deserialize(game_connect_token)
 
         # Check for any extra bytes in the stream
         self.extra_bytes = stream.read()

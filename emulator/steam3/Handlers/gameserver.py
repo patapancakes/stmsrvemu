@@ -171,10 +171,10 @@ def handle_GS_UserPlaying(cmserver_obj, packet: CMPacket, client_obj: Client):
     cmserver_obj.log.info(f"({client_address[0]}:{client_address[1]}): Recieved GS User Playing")
     request = packet.CMRequest
     userplaying_msg = MsgGSUserPlaying3()
-    userplaying_data = userplaying_msg.parse(request.data)
+    userplaying_msg.parse(request.data)
     # TODO  Check if token is valid! need to store connection tokens somewhere, then send gsapprove or gsdeny depending on validity
 
-    return build_GSApprove(userplaying_data.connnect_token)
+    return build_GSApprove(client_obj, userplaying_msg.game_connect_token)
 
 def handle_GS_DisconnectNotice(cmserver_obj, packet: CMPacket, client_obj: Client):
     client_address = client_obj.ip_port

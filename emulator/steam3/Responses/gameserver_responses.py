@@ -19,7 +19,7 @@ def build_GSApprove(client_obj, connect_token):
     # print(f"Responding to Gameserver Status Request")
     packet = CMResponse(eMsgID = EMsg.GSApprove, client_obj = client_obj)
 
-    packet.data = MsgGSApprove(connect_token.steamGlobalId)
+    packet.data = MsgGSApprove(connect_token.steamGlobalId).serialize()
 
     packet.length = len(packet.data)
     return packet
