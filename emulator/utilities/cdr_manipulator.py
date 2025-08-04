@@ -336,13 +336,8 @@ def update_subscription_id_in_xml(xml_file_path, old_id, new_id):
 
 
 def integrate_customs_files(execdict, islan):
-    from tkinter import messagebox
-    import tkinter as tk
     execdict_temp_01 = {}
     execdict_temp_02 = {}
-    # Initialize tkinter root for messagebox
-    root = tk.Tk()
-    root.withdraw()  # Hide the root window as we only need the messagebox
 
     for file in os.walk("files/mod_blob"):
         for customblobfile in file[2]:
@@ -409,10 +404,6 @@ def integrate_customs_files(execdict, islan):
                                     # Trigger message box to notify ID change, including subscription name
                                     old_key_int = int().from_bytes(key, 'little')
                                     new_key_int = int().from_bytes(new_key, 'little')
-                                    messagebox.showinfo(
-                                            "ID Changed",
-                                            f"Subscription ID for key {old_key_int} has been changed to {new_key_int}.\nSubscription name: {subscription_name}"
-                                    )
 
                                     # Update the b"\x01\x00\x00\x00" key in the subdictionary
                                     subdict[b"\x01\x00\x00\x00"] = new_key
