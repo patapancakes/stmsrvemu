@@ -778,7 +778,7 @@ class LobbyMembers(Base):
     __table_args__ = (UniqueConstraint('LobbyID', 'friendRegistryID'),)
 
 class LobbyMetadata(Base):
-    __tablename__ = 'Lobby_Netadata'
+    __tablename__ = 'Lobby_Metadata'
     UniqueID = Column(Integer, primary_key = True, autoincrement = True)
     LobbyID = Column(Integer, ForeignKey('Lobby_Registry.UniqueID'))
     friendRegistryID = Column(Integer, ForeignKey('friends_registry.accountID'))
